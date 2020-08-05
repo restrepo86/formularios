@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForOf } from '@angular/common';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -10,7 +9,7 @@ import { NgForm } from '@angular/forms';
 export class TemplateComponent implements OnInit {
 
   public usuario = {
-    nombre: 'Juan'
+    nombre: ''
   };
 
   constructor() { }
