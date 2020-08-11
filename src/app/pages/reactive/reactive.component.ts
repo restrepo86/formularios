@@ -19,7 +19,19 @@ export class ReactiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearFormulario() {
+  get nombreNoValido(): boolean {
+    return this.formulario.get('nombre').invalid && this.formulario.get('nombre').touched;
+  }
+
+  get apellidoNoValido(): boolean {
+    return this.formulario.get('apellido').invalid && this.formulario.get('apellido').touched;
+  }
+
+  get correoNoValido(): boolean {
+    return this.formulario.get('correo').invalid && this.formulario.get('correo').touched;
+  }
+
+  crearFormulario(): void {
     this.formulario = this.formBuider.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellido: ['', Validators.required],
@@ -27,8 +39,12 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
-  guardar() {
+  guardar(): void {
     console.log(this.formulario);
+
+    if (this.formulario.invalid) {
+      return Object.values(this.formulario.controls).forEach(control => control.markAsTouched())
+    }
     
   }
 
