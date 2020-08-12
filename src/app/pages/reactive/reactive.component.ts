@@ -53,7 +53,7 @@ export class ReactiveComponent implements OnInit {
         distrito: ['', Validators.required],
         ciudad: ['', Validators.required],
       }),
-      pasatiempos: this.formBuider.array([[], [], []])
+      pasatiempos: this.formBuider.array([])
     });
   }
 
@@ -70,6 +70,14 @@ export class ReactiveComponent implements OnInit {
           //ciudad: 'Medellín'
         }
     });
+  }
+
+  agregarPasatiempo(): void {
+    this.pasatiempos.push(this.formBuider.control('', Validators.required));
+  }
+
+  borrarPasatiempo(index: number): void {
+    this.pasatiempos.removeAt(index);
   }
 
   guardar(): void {

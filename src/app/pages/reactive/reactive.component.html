@@ -60,14 +60,14 @@
                             <input class="form-control" type="text" [formControlName]="index">
                         </td>
                         <td>
-                            <button class="btn btn-danger">
+                            <button class="btn btn-danger" (click)="borrarPasatiempo(index)">
                                 Borrar
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-primary mt-3 mb-5 btn-block" type="button">Agregar</button>
+            <button class="btn btn-primary mt-3 mb-5 btn-block" type="button" (click)="agregarPasatiempo()"> + Agregar</button>
         </div>
     </div>
 
