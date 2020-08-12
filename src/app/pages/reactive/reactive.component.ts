@@ -67,9 +67,12 @@ export class ReactiveComponent implements OnInit {
         correo: 'restrepo9212@gmail.com',
         direccion: {
           distrito: 'capital',
-          //ciudad: 'Medellín'
+          ciudad: 'Medellín'
         }
     });
+
+    ["comer", "Dormir"].forEach(valorPorDefecto => this.pasatiempos.push(this.formBuider.control(valorPorDefecto)));
+
   }
 
   agregarPasatiempo(): void {
