@@ -14,6 +14,7 @@ export class ReactiveComponent implements OnInit {
     private formBuider: FormBuilder
   ) {
     this.crearFormulario();
+    this.cargarDataFormulario();
   }
 
   ngOnInit(): void {
@@ -51,12 +52,35 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  cargarDataFormulario(): void {
+    // Si usamos el reset podemos dar valores por defecto solo a algunos campos, 
+    //si usamos el setValue se deben dar valores por defecto a todos los campos
+    //this.formulario.setValue({
+      this.formulario.reset({
+        nombre: 'Juan',
+        apellido: 'Restrepo',
+        correo: 'restrepo9212@gmail.com',
+        direccion: {
+          distrito: 'capital',
+          //ciudad: 'Medellín'
+        }
+    });
+  }
+
   guardar(): void {
     console.log(this.formulario.value);
 
     if (this.formulario.invalid) {
       return Object.values(this.formulario.controls).forEach(control => control.markAllAsTouched());
     }
+
+    this.formulario.reset(
+      {
+        correo: 'restrepo9212@gmail.com'
+      }
+    );
+
   }
+
 
 }
