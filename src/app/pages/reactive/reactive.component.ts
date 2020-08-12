@@ -17,6 +17,7 @@ export class ReactiveComponent implements OnInit {
   ) {
     this.crearFormulario();
     this.cargarDataFormulario();
+    this.crearListeners();
   }
 
   ngOnInit(): void {
@@ -73,9 +74,17 @@ export class ReactiveComponent implements OnInit {
         ciudad: ['', Validators.required],
       }),
       pasatiempos: this.formBuider.array([])
-    },{
+    }, {
       validators: this.validadores.passwordsIguales('pass1', 'pass2')
     });
+  }
+
+  crearListeners() {
+    //se crea observador para cambios en todo el formulario
+    this.formulario.valueChanges.subscribe(valor => console.log(valor));
+
+    this.formulario.statusChanges.subscribe(status => console.log({status}));
+    
   }
 
   cargarDataFormulario(): void {
