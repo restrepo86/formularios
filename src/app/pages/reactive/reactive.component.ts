@@ -38,6 +38,10 @@ export class ReactiveComponent implements OnInit {
     return this.formulario.get('correo').invalid && this.formulario.get('correo').touched;
   }
 
+  get usuarioNoValido(): boolean {
+    return this.formulario.get('usuario').invalid && this.formulario.get('usuario').touched;
+  }
+
   get distritoNoValido(): boolean {
     return this.formulario.get('direccion.distrito').invalid && this.formulario.get('direccion.distrito').touched;
   }
@@ -61,6 +65,7 @@ export class ReactiveComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellido: ['', [Validators.required, this.validadores.noApellidoHerrera]],
       correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      usuario: ['', , this.validadores.existeUsuario],
       pass1: ['', Validators.required],
       pass2: ['', Validators.required],
       direccion: this.formBuider.group({
@@ -81,6 +86,8 @@ export class ReactiveComponent implements OnInit {
         nombre: 'Juan',
         apellido: 'Restrepo',
         correo: 'restrepo9212@gmail.com',
+        pass1: '123',
+        pass2: '123',
         direccion: {
           distrito: 'capital',
           ciudad: 'Medellín'
